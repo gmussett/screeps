@@ -4,6 +4,8 @@
 // Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Upgrader1', { memory: { role: 'upgrader' } }  );
 // Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Builder1', { memory: { role: 'builder' } } );
 
+//  Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], 'BigBuilder1', { memory: { role: 'builder' } } );
+
 // Game.creeps['Harvester1'].memory.role = 'harvester';
 // Game.creeps['Upgrader1'].memory.role = 'upgrader';
 
@@ -23,6 +25,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
+        }
+        if(creep.memory.role == 'builder') {
+            roleBuilder.run(creep);
         }
     }
 }
