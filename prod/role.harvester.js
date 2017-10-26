@@ -23,9 +23,14 @@ var roleHarvester = {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             } else {
-              spawns = creep.room.find(FIND_MY_SPAWNS);
-              creep.say('idle');
-              creep.moveTo(spawns[0])
+              flags = creep.room.find(FIND_FLAGS);
+              if (flags.length > 0) {
+                creep.moveTo(flags[0]);
+              } else {}
+                spawns = creep.room.find(FIND_MY_SPAWNS);
+                creep.say('idle');
+                creep.moveTo(spawns[0])
+              };
             }
         }
 	}
