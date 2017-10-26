@@ -23,7 +23,7 @@ var roleHarvester = {
               creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
             }
           } else {
-            flags = creep.room.find(FIND_FLAGS);
+            flags = creep.pos.findClosestByRange(FIND_FLAGS);
             if (flags.length > 0) {
               creep.moveTo(flags[0]);
             } else {
