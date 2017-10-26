@@ -6,6 +6,8 @@
 
 //  Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], 'BigBuilder1', { memory: { role: 'builder' } } );
 
+// Game.spawns['Spawn1'].room.controller.activateSafeMode();
+
 // Game.creeps['Harvester1'].memory.role = 'harvester';
 // Game.creeps['Upgrader1'].memory.role = 'upgrader';
 
@@ -34,16 +36,16 @@ module.exports.loop = function () {
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
-            console.log('Clearing non-existing creep memory:', name);
+            // console.log('Clearing non-existing creep memory:', name);
         }
     }
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    console.log('Harvesters: ' + harvesters.length);
+    // console.log('Harvesters: ' + harvesters.length);
 
     if(harvesters.length < 2) {
         var newName = 'Harvester' + Game.time;
-        console.log('Spawning new harvester: ' + newName);
+        // console.log('Spawning new harvester: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'harvester'}});
     }
