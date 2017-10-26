@@ -50,12 +50,12 @@ module.exports.loop = function () {
         // console.log('Spawning new harvester: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'harvester'}});
-    } elseif (upgraders.length < 1) {
+    } else if (upgraders.length < 1) {
       var newName = 'Upgrader' + Game.time;
       // console.log('Spawning new upgrader: ' + newName);
       Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
           {memory: {role: 'upgrader'}});
-    } elseif (builders.length < 1) {
+    } else if (builders.length < 1) {
       var newName = 'Builder' + Game.time;
       // console.log('Spawning new builder: ' + newName);
       Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
