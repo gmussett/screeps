@@ -25,7 +25,7 @@ var roleHarvester = {
           } else {
             flags = creep.room.find(FIND_FLAGS);
             if (flags.length > 0) {
-              creep.moveTo(tower.pos.findClosestByRange(FIND_FLAGS));
+              creep.moveTo(creep.pos.findClosestByRange(FIND_FLAGS));
             } else {
               spawns = creep.room.find(FIND_MY_SPAWNS);
               creep.say('idle');
