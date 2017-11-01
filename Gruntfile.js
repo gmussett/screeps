@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                   {
                       expand: true,
                       cwd: 'sim/',
-                      src: ['**/*.js'],
+                      src: ['**/*js'],
                       flatten: true
                   }
               ]
