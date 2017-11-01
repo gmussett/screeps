@@ -11,32 +11,32 @@ module.exports.loop = function () {
     if(!Game.creeps[name]) {
       delete Memory.creeps[name];
       console.log('Clearing non-existing creep memory:', name);
-    };
-  };
+    }
+  }
 
   // spawn creeps
   if(Game.creeps.length < 6) {
-    Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Worker' + Game.time, {memory: { role: 'worker'}});
+    Game.spawns.Spawn1.spawnCreep( [WORK, CARRY, MOVE], 'Worker' + Game.time, {memory: { role: 'worker'}});
   }
 
   // initialize creeps
- for(var name in Game.creeps) {
+ for(name in Game.creeps) {
     var creep = Game.creeps[name];
     if(creep.memory.role == 'worker') {
       roleWorker.run(creep);
-    };
-  };
+    }
+  }
 
 
   // Need harvesters
-  if (Game.spawns['Spawn1'].energy < Game.spawns['Spawn1'].energyCapacity) {
+  if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
     console.log('NEED MOAR ENERGY');
-    Memory.jobboard.push( [ "", "harvest"] )
+    Memory.jobboard.push( [ "", "harvest"] );
   }
-  for(var name in Game.creeps) {
+  for(name in Game.creeps) {
     if(Math.floor(Math.random()*10)==1) {
-      Memory.jobboard.push( [ creep.id, "say", ["bah"] ] );
-    };
+      Memory.jobboard.push( [ name.id, "say", ["bah"] ] );
+    }
 
   }
 
@@ -44,4 +44,4 @@ module.exports.loop = function () {
  // who should do what
  // write to job board
 
-}
+};
