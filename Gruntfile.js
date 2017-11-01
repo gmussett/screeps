@@ -15,10 +15,7 @@ module.exports = function(grunt) {
           dist: {
               files: [
                   {
-                      expand: true,
-                      cwd: 'sim/',
-                      src: ['**/*js'],
-                      flatten: true
+                      src: ['sim/*.js' ],
                   }
               ]
           }
