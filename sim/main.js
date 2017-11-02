@@ -1,4 +1,5 @@
 /*jshint esnext:true */
+
 // testing in sim dir
 
 var roleWorker = require('role.worker');
@@ -16,10 +17,12 @@ module.exports.loop = function () {
   }
 
   // spawn creeps
-  Workers =  _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
+  var Workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
   if(Workers.length < 6) {
     console.log('Spawning new creep');
     Game.spawns.Spawn1.spawnCreep( [WORK, CARRY, MOVE], 'Worker' + Game.time, {memory: { role: 'worker'}});
+  } else {
+    console.log('Total of ' + Workers.length + ' Workers meets threshold');
   }
 
   // initialize creeps
