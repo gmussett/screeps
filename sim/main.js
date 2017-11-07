@@ -3,8 +3,9 @@
 // testing in sim dir
 
 var roleWorker = require('role.worker');
+var WORKFORCE_TARGET = 6;
 
-Memory.jobboard = Array();
+Memory.jobboard = { harvesters: [0,0], upgraders: [1,0], builders: [0,0] };
 
 module.exports.loop = function () {
 
@@ -18,11 +19,11 @@ module.exports.loop = function () {
 
   // spawn creeps
   var Workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
-  if(Workers.length < 6) {
+  var Upgraders  = _.filter(Game.creeps, (creep) => creep.memory.job == 'upgrade');
+  var Idle  = _.filter(Game.creeps, (creep) => creep.memory.job === null );
+  if(Game.spawns.Spawn1.energy >= 300) {
     console.log('Spawning new creep');
     Game.spawns.Spawn1.spawnCreep( [WORK, CARRY, MOVE], 'Worker' + Game.time, {memory: { role: 'worker'}});
-  } else {
-    console.log('Total of ' + Workers.length + ' Workers meets threshold');
   }
 
   // initialize creeps
@@ -33,18 +34,14 @@ module.exports.loop = function () {
     }
   }
 
-
   // Need harvesters
-  if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
-    console.log('NEED MOAR ENERGY');
-    Memory.jobboard.push( [ "", "harvest"] );
+  if ((Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) && Memory.jobboard.harvesters[1] < 1) {
+    console.log('Need harvester');
+    Memory.jobboard.harvesters[0]=1;
   }
-  for(name in Game.creeps) {
-    if(Math.floor(Math.random()*10)==1) {
-      Memory.jobboard.push( [ name.id, "say", ["bah"] ] );
-    }
 
-  }
+
+
 
  // figure out what we need
  // who should do what
